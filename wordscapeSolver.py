@@ -1,8 +1,13 @@
+#Gets wordscape letters from user
 def getLetters():
     letters = input("Type letters with a space in between each letter: ").split(' ')
     return letters
 
+#Helper function that returns true
+#if a word has some (if not) all letters
+#in a wordscape
 def checkLetter(word, letters):
+    #turn word into word array
     wordarray = []
     for letter in word:
         wordarray.append(letter)
@@ -18,6 +23,8 @@ def checkLetter(word, letters):
             word.pop(0)
     return True
 
+#reads dictionary and places applicable words
+#in an array
 def readDictionary(letters):
     dictionary = open("words.txt","r")
     words = []
@@ -27,6 +34,7 @@ def readDictionary(letters):
             words.append(actualWord)
     return words
 
+#prints all words
 def printWords(words):
     tempWords = words.copy()
     counter = 1
@@ -41,7 +49,9 @@ def printWords(words):
                 i -= 1
             i += 1
         counter += 1
-        
+
+#prints all words with a specified
+#amount of letters        
 def printWords(words, num):
     tempWords = words.copy()
     i = 0
@@ -51,12 +61,16 @@ def printWords(words, num):
             print(word)
         i += 1
 
+#helper function that see if a specific word
+#fits the requirement of the incomplete word
 def checkSpecificWord(word, blank, indexArray):
     for i in indexArray:
         if not (word[i] == blank[i]):
             return False
     return True
 
+#Returns all words that satisfy 
+#the incomplete word
 def printSpecificWords(words, blank):
     indexArray = []
     for i in range(len(blank)):
@@ -68,7 +82,7 @@ def printSpecificWords(words, blank):
             print(word)
 
     
-
+#menu system that allows user to choose what they want
 def menuSystem(words):
     userInput = ""
     while (userInput != "q"):
@@ -77,7 +91,7 @@ def menuSystem(words):
         print("\t1.) Print all words")
         print("\t2.) Print words with specified number of letters")
         print("\t3.) Print words that fit an unfinished word")
-        userInput = input("What would you like? type the number of your choice or q to quit. ")
+        userInput = input("What would you like? Type the number of your choice or q to quit. ")
         if (userInput == "0"):
             menuSystem(readDictionary(getLetters()))
             break;
