@@ -73,11 +73,15 @@ def menuSystem(words):
     userInput = ""
     while (userInput != "q"):
         print("\nOptions:")
+        print('\t0.) Choose new letters')
         print("\t1.) Print all words")
         print("\t2.) Print words with specified number of letters")
         print("\t3.) Print words that fit an unfinished word")
         userInput = input("What would you like? type the number of your choice or q to quit. ")
-        if (userInput == "1"):
+        if (userInput == "0"):
+            menuSystem(readDictionary(getLetters()))
+            break;
+        elif (userInput == "1"):
             printWords(words)
         elif (userInput == "2"):
             num = int(input("How many letters do you want in a word? "))
